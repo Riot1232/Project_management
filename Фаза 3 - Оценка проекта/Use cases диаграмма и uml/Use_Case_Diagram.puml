@@ -2,7 +2,7 @@
 @startuml
 left to right direction
 
-' ===== ОФОРМЛЕНИЕ =====
+===== ОФОРМЛЕНИЕ =====
 
 skinparam backgroundColor #FFFFFF
 skinparam shadowing false
@@ -46,14 +46,14 @@ skinparam package {
   FontStyle bold
 }
 
-' ===== АКТОРЫ =====
+===== АКТОРЫ =====
 
 actor "Заявитель" as A0
 actor "Исполнитель" as A1
 actor "Руководитель" as A2
 actor "Администратор" as A3
 
-' ===== ГРАНИЦА СИСТЕМЫ =====
+===== ГРАНИЦА СИСТЕМЫ =====
 
 rectangle "A2 · Внутренний Service Desk" as SD {
 
@@ -78,7 +78,7 @@ rectangle "A2 · Внутренний Service Desk" as SD {
   }
 }
 
-' ===== ЗАЯВИТЕЛЬ (СЛЕВА) =====
+===== ЗАЯВИТЕЛЬ =====
 
 A0 -right- U1
 A0 -right- U2
@@ -88,7 +88,7 @@ A0 -right- U6
 A0 -right- U7
 A0 -right- U9
 
-' ===== ИСПОЛНИТЕЛЬ (СПРАВА) =====
+===== ИСПОЛНИТЕЛЬ =====
 
 U5 -right- A1
 U6 -right- A1
@@ -96,21 +96,21 @@ U7 -right- A1
 U8 -right- A1
 U9 -right- A1
 
-' ===== РУКОВОДИТЕЛЬ (СПРАВА) =====
+===== РУКОВОДИТЕЛЬ =====
 
 U4 -right- A2
 U9 -right- A2
 U10 -right- A2
 
-' ===== АДМИНИСТРАТОР (СПРАВА) =====
+===== АДМИНИСТРАТОР =====
 
 U11 -right- A3
 
-' ===== INCLUDE =====
+===== INCLUDE =====
 
 U2 ..> U3 : <<include>>
 
-' ===== УПРАВЛЕНИЕ КОМПОНОВКОЙ =====
+===== УПРАВЛЕНИЕ КОМПОНОВКОЙ =====
 
 U1 -[hidden]down- U2
 U3 -[hidden]down- U5
