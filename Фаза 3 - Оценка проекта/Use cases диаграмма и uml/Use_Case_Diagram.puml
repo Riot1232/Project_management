@@ -1,0 +1,125 @@
+
+@startuml
+left to right direction
+
+' ===== ОФОРМЛЕНИЕ =====
+
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam dpi 160
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 13
+skinparam roundCorner 12
+skinparam nodesep 30
+skinparam ranksep 42
+skinparam linetype polyline
+
+skinparam ArrowColor #64748B
+skinparam ArrowFontColor #475569
+skinparam ArrowThickness 1
+
+skinparam actor {
+  BackgroundColor #FFFFFF
+  BorderColor #334155
+  FontColor #0F172A
+  FontSize 13
+}
+
+skinparam usecase {
+  BackgroundColor #EAF4F7
+  BorderColor #7AA0B0
+  FontColor #123443
+  FontSize 12
+}
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #94A3B8
+  FontColor #0F172A
+  FontStyle bold
+}
+
+skinparam package {
+  BackgroundColor #F8FAFC
+  BorderColor #CBD5E1
+  FontColor #334155
+  FontStyle bold
+}
+
+' ===== АКТОРЫ =====
+
+actor "Заявитель" as A0
+actor "Исполнитель" as A1
+actor "Руководитель" as A2
+actor "Администратор" as A3
+
+' ===== ГРАНИЦА СИСТЕМЫ =====
+
+rectangle "A2 · Внутренний Service Desk" as SD {
+
+  package "01 · Подача и сопровождение" as P1 {
+    usecase "UC-01\nРегистрация пользователя" as U1
+    usecase "UC-02\nСоздание заявки" as U2
+    usecase "UC-03\nВыбор категории заявки" as U3
+    usecase "UC-05\nКомментирование заявки" as U5
+    usecase "UC-06\nПрикрепление файла" as U6
+  }
+
+  package "02 · Обработка и контроль" as P2 {
+    usecase "UC-04\nНазначение исполнителя" as U4
+    usecase "UC-07\nИзменение статуса заявки" as U7
+    usecase "UC-08\nЭскалация заявки" as U8
+    usecase "UC-09\nПросмотр SLA" as U9
+  }
+
+  package "03 · Аналитика и администрирование" as P3 {
+    usecase "UC-10\nФормирование отчёта" as U10
+    usecase "UC-11\nУправление справочниками" as U11
+  }
+}
+
+' ===== ЗАЯВИТЕЛЬ (СЛЕВА) =====
+
+A0 -right- U1
+A0 -right- U2
+A0 -right- U3
+A0 -right- U5
+A0 -right- U6
+A0 -right- U7
+A0 -right- U9
+
+' ===== ИСПОЛНИТЕЛЬ (СПРАВА) =====
+
+U5 -right- A1
+U6 -right- A1
+U7 -right- A1
+U8 -right- A1
+U9 -right- A1
+
+' ===== РУКОВОДИТЕЛЬ (СПРАВА) =====
+
+U4 -right- A2
+U9 -right- A2
+U10 -right- A2
+
+' ===== АДМИНИСТРАТОР (СПРАВА) =====
+
+U11 -right- A3
+
+' ===== INCLUDE =====
+
+U2 ..> U3 : <<include>>
+
+' ===== УПРАВЛЕНИЕ КОМПОНОВКОЙ =====
+
+U1 -[hidden]down- U2
+U3 -[hidden]down- U5
+U5 -[hidden]down- U6
+
+U4 -[hidden]down- U7
+U7 -[hidden]down- U8
+U8 -[hidden]down- U9
+
+U10 -[hidden]down- U11
+
+@enduml
